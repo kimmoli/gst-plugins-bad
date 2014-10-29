@@ -2,7 +2,7 @@
 %define gstreamer    gstreamer
 
 Summary:     GStreamer streaming media framework "bad" plug-ins
-Name:        %{gstreamer}1.0-plugins-bad
+Name:        %{gstreamer}%{majorminor}-plugins-bad
 Version:     1.2.0
 Release:     1
 License:     LGPLv2+
@@ -44,7 +44,7 @@ are not tested well enough, or the code is not of good enough quality.
 %build
 NOCONFIGURE=1 ./autogen.sh
 %configure \
-  --with-package-name='Jolla GStreamer Bad Plug-ins' \
+  --with-package-name='SailfishOS GStreamer Bad Plug-ins' \
   --with-package-origin='http://jolla.com' \
   --enable-debug \
   --disable-static \
