@@ -74,7 +74,7 @@ NOCONFIGURE=1 ./autogen.sh
   --disable-id3tag --disable-linsys --disable-gsettings --disable-hls --disable-dvb \
   --disable-decklink --disable-accurip --disable-audiofxbad --disable-ivtc \
   --disable-midi --disable-yadif --disable-mpegtsdemux --disable-mpegtsmux \
-  --disable-accurip --disable-autoconvert --disable-gdp --disable-mfc
+  --disable-accurip --disable-autoconvert --disable-gdp
 
 make %{?jobs:-j%jobs}
 
@@ -105,13 +105,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstshm.so
 %{_libdir}/gstreamer-%{majorminor}/libgstcamerabin2.so
 %{_libdir}/gstreamer-%{majorminor}/libgstvideoparsersbad.so
+%{_libdir}/gstreamer-%{majorminor}/libgstaudiomixer.so
+%{_libdir}/gstreamer-%{majorminor}/libgstcompositor.so
 %{_libdir}/libgstphotography-%{majorminor}.so.*
 %{_libdir}/libgstcodecparsers-%{majorminor}.so.*
 %{_libdir}/libgstinsertbin-%{majorminor}.so.*
 %{_libdir}/libgsturidownloader-%{majorminor}.so.*
-%{_libdir}/libgsturidownloader-%{majorminor}.so.*
 %{_libdir}/libgstbasecamerabinsrc-%{majorminor}.so.*
 %{_libdir}/libgstmpegts-%{majorminor}.so.*
+%{_libdir}/libgstbadbase-%{majorminor}.so.*
+%{_libdir}/libgstbadvideo-%{majorminor}.so.*
 
 %files devel
 %defattr(-,root,root,-)
@@ -121,6 +124,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgstmpegts-%{majorminor}.so
 %{_libdir}/libgsturidownloader-%{majorminor}.so
 %{_libdir}/libgstbasecamerabinsrc-%{majorminor}.so
+%{_libdir}/libgstbadbase-%{majorminor}.so
+%{_libdir}/libgstbadvideo-%{majorminor}.so
 %{_includedir}/gstreamer-%{majorminor}/gst/interfaces/photography*
 %{_includedir}/gstreamer-%{majorminor}/gst/codecparsers
 %{_includedir}/gstreamer-%{majorminor}/gst/insertbin
@@ -133,6 +138,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gstreamer-%{majorminor}/gst/mpegts/gstmpegtsdescriptor.h
 %{_includedir}/gstreamer-%{majorminor}/gst/mpegts/gstmpegtssection.h
 %{_includedir}/gstreamer-%{majorminor}/gst/mpegts/mpegts.h
+%{_includedir}/gstreamer-%{majorminor}/gst/mpegts/gstmpegts-enumtypes.h
+%{_includedir}/gstreamer-%{majorminor}/gst/mpegts/gst-scte-section.h
 %{_includedir}/gstreamer-%{majorminor}/gst/uridownloader/gstfragment.h
 %{_includedir}/gstreamer-%{majorminor}/gst/uridownloader/gsturidownloader.h
 %{_includedir}/gstreamer-%{majorminor}/gst/uridownloader/gsturidownloader_debug.h
