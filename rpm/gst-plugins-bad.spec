@@ -100,7 +100,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/gstreamer-%{majorminor}/libgstwaylandsink.so
 %{_libdir}/gstreamer-%{majorminor}/libgstjpegformat.so
 %{_libdir}/gstreamer-%{majorminor}/libgstrawparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstshm.so
