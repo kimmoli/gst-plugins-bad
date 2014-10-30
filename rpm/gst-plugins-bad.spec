@@ -9,6 +9,11 @@ License:     LGPLv2+
 Group:       Applications/Multimedia
 URL:         http://gstreamer.freedesktop.org/
 Source:      http://gstreamer.freedesktop.org/src/gst-plugins-bad/gstreamer1.0-plugins-bad-%{version}.tar.xz
+Patch1:      0001-Set-video-branch-to-NULL-after-finishing-video-recor.patch
+Patch2:      0002-Keep-video-branch-in-NULL-state.patch
+Patch3:      0003-photography-add-missing-vmethods.patch
+Patch4:      0004-camerabin-install-GST_PHOTOGRAPHY_PROP_EXPOSURE_MODE.patch
+Patch5:      0005-Downgrade-mpeg4videoparse-to-prevent-it-from-being-p.patch
 Requires:      orc >= 0.4.18
 BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires: check
@@ -41,6 +46,11 @@ are not tested well enough, or the code is not of good enough quality.
 
 %prep
 %setup -q -n gstreamer1.0-plugins-bad-%{version}/gst-plugins-bad
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 NOCONFIGURE=1 ./autogen.sh
