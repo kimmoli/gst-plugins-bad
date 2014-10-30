@@ -22,7 +22,7 @@ BuildRequires: pkgconfig(libexif)
 BuildRequires: pkgconfig(orc-0.4) >= 0.4.18
 BuildRequires: pkgconfig(wayland-client)
 BuildRequires: python
-BuildRequires: autoconf213
+BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: libtool
 BuildRequires: gettext-devel
