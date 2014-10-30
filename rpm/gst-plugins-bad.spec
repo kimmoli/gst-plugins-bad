@@ -81,7 +81,7 @@ NOCONFIGURE=1 ./autogen.sh
   --disable-speed --disable-subenc --disable-stereo --disable-tta \
   --disable-videofilters --disable-videomeasure --disable-videosignal \
   --disable-vmnc --disable-y4m --disable-fbdev --disable-vcd \
-  --disable-id3tag --disable-linsys --disable-gsettings --disable-hls --disable-dvb \
+  --disable-id3tag --disable-linsys --disable-gsettings --disable-dvb \
   --disable-decklink --disable-accurip --disable-audiofxbad --disable-ivtc \
   --disable-midi --disable-yadif --disable-mpegtsdemux --disable-mpegtsmux \
   --disable-accurip --disable-autoconvert --disable-gdp
@@ -117,6 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstvideoparsersbad.so
 %{_libdir}/gstreamer-%{majorminor}/libgstaudiomixer.so
 %{_libdir}/gstreamer-%{majorminor}/libgstcompositor.so
+%{_libdir}/gstreamer-%{majorminor}/libgstfragmented.so
 %{_libdir}/libgstphotography-%{majorminor}.so.*
 %{_libdir}/libgstcodecparsers-%{majorminor}.so.*
 %{_libdir}/libgstinsertbin-%{majorminor}.so.*
