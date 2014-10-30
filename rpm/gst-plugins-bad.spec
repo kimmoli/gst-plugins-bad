@@ -20,6 +20,7 @@ BuildRequires: check
 BuildRequires: pkgconfig(libexif)
 BuildRequires: pkgconfig(orc-0.4) >= 0.4.18
 BuildRequires: pkgconfig(wayland-client)
+BuildRequires: pkgconfig(libgcrypt)
 BuildRequires: python
 BuildRequires: autoconf
 BuildRequires: automake
