@@ -9,11 +9,12 @@ License:     LGPLv2+
 Group:       Applications/Multimedia
 URL:         http://gstreamer.freedesktop.org/
 Source:      http://gstreamer.freedesktop.org/src/gst-plugins-bad/gstreamer1.0-plugins-bad-%{version}.tar.xz
+Requires:      orc >= 0.4.18
 BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires: check
 BuildRequires: pkgconfig(exempi-2.0)
 BuildRequires: pkgconfig(libexif)
-BuildRequires: pkgconfig(orc-0.4)
+BuildRequires: pkgconfig(orc-0.4) >= 0.4.18
 BuildRequires: pkgconfig(wayland-client)
 BuildRequires: python
 BuildRequires: autoconf213
