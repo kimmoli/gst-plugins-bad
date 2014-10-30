@@ -17,7 +17,6 @@ Patch5:      0005-Downgrade-mpeg4videoparse-to-prevent-it-from-being-p.patch
 Requires:      orc >= 0.4.18
 BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires: check
-BuildRequires: pkgconfig(exempi-2.0)
 BuildRequires: pkgconfig(libexif)
 BuildRequires: pkgconfig(orc-0.4) >= 0.4.18
 BuildRequires: pkgconfig(wayland-client)
