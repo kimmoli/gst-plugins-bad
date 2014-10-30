@@ -20,7 +20,6 @@ BuildRequires: check
 BuildRequires: pkgconfig(libexif)
 BuildRequires: pkgconfig(orc-0.4) >= 0.4.18
 BuildRequires: pkgconfig(wayland-client)
-BuildRequires: pkgconfig(libcurl)
 BuildRequires: python
 BuildRequires: autoconf
 BuildRequires: automake
@@ -85,7 +84,7 @@ NOCONFIGURE=1 ./autogen.sh
   --disable-id3tag --disable-linsys --disable-gsettings --disable-dvb \
   --disable-decklink --disable-accurip --disable-audiofxbad --disable-ivtc \
   --disable-midi --disable-yadif --disable-mpegtsdemux --disable-mpegtsmux \
-  --disable-accurip --disable-autoconvert --disable-gdp --enable-curl
+  --disable-accurip --disable-autoconvert --disable-gdp
 
 make %{?jobs:-j%jobs}
 
@@ -119,7 +118,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstaudiomixer.so
 %{_libdir}/gstreamer-%{majorminor}/libgstcompositor.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfragmented.so
-%{_libdir}/gstreamer-%{majorminor}/libgstcurl.so
 %{_libdir}/libgstphotography-%{majorminor}.so.*
 %{_libdir}/libgstcodecparsers-%{majorminor}.so.*
 %{_libdir}/libgstinsertbin-%{majorminor}.so.*
