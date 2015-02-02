@@ -3,7 +3,7 @@
 
 Summary:     GStreamer streaming media framework "bad" plug-ins
 Name:        %{gstreamer}%{majorminor}-plugins-bad
-Version:     1.4.4
+Version:     1.4.5
 Release:     1
 License:     LGPLv2+
 Group:       Applications/Multimedia
