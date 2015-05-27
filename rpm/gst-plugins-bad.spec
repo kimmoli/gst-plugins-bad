@@ -20,7 +20,6 @@ BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires: check
 BuildRequires: pkgconfig(libexif)
 BuildRequires: pkgconfig(orc-0.4) >= 0.4.18
-BuildRequires: pkgconfig(wayland-client)
 BuildRequires: pkgconfig(libgcrypt)
 BuildRequires: python
 BuildRequires: autoconf
@@ -68,7 +67,6 @@ NOCONFIGURE=1 ./autogen.sh
   --enable-gtk-doc-pdf=no \
   --disable-nls \
   --enable-orc \
-  --enable-wayland \
   --disable-adpcmdec --disable-adpcmenc --disable-aiff --disable-asfmux \
   --disable-audiovisualizers --disable-bayer \
   --disable-cdxaparse --disable-coloreffects --disable-dataurisrc \
@@ -123,7 +121,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstcompositor.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfragmented.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegtsdemux.so
-%{_libdir}/gstreamer-%{majorminor}/libgstwaylandsink.so
 %{_libdir}/libgstphotography-%{majorminor}.so.*
 %{_libdir}/libgstcodecparsers-%{majorminor}.so.*
 %{_libdir}/libgstinsertbin-%{majorminor}.so.*
@@ -132,7 +129,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgstmpegts-%{majorminor}.so.*
 %{_libdir}/libgstbadbase-%{majorminor}.so.*
 %{_libdir}/libgstbadvideo-%{majorminor}.so.*
-%{_libdir}/libgstwayland-%{majorminor}.so.*
 
 %files devel
 %defattr(-,root,root,-)
@@ -144,7 +140,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgstbasecamerabinsrc-%{majorminor}.so
 %{_libdir}/libgstbadbase-%{majorminor}.so
 %{_libdir}/libgstbadvideo-%{majorminor}.so
-%{_libdir}/libgstwayland-%{majorminor}.so
 %{_includedir}/gstreamer-%{majorminor}/gst/interfaces/photography*
 %{_includedir}/gstreamer-%{majorminor}/gst/codecparsers
 %{_includedir}/gstreamer-%{majorminor}/gst/insertbin
