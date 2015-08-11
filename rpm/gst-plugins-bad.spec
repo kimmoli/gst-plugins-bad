@@ -21,6 +21,9 @@ BuildRequires: check
 BuildRequires: pkgconfig(libexif)
 BuildRequires: pkgconfig(orc-0.4) >= 0.4.18
 BuildRequires: pkgconfig(libgcrypt)
+BuildRequires: pkgconfig(wayland-egl)
+BuildRequires: pkgconfig(glesv2)
+BuildRequires: pkgconfig(egl)
 BuildRequires: python
 BuildRequires: autoconf
 BuildRequires: automake
@@ -67,6 +70,7 @@ NOCONFIGURE=1 ./autogen.sh
   --enable-gtk-doc-pdf=no \
   --disable-nls \
   --enable-orc \
+  --enable-gles2 \
   --disable-adpcmdec --disable-adpcmenc --disable-aiff --disable-asfmux \
   --disable-audiovisualizers --disable-bayer \
   --disable-cdxaparse --disable-coloreffects --disable-dataurisrc \
@@ -100,6 +104,9 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.a
 rm -fr $RPM_BUILD_ROOT%{_datadir}/gtk-doc
 
+# remove waylandsink. It does not run because we do not support all the interfaces it needs.
+rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/libgstwaylandsink.so
+rm -f $RPM_BUILD_ROOT%{_libdir}/libgstwayland-%{majorminor}.so*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -121,6 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstcompositor.so
 %{_libdir}/gstreamer-%{majorminor}/libgstfragmented.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegtsdemux.so
+%{_libdir}/gstreamer-%{majorminor}/libgstopengl.so
 %{_libdir}/libgstphotography-%{majorminor}.so.*
 %{_libdir}/libgstcodecparsers-%{majorminor}.so.*
 %{_libdir}/libgstinsertbin-%{majorminor}.so.*
@@ -129,6 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgstmpegts-%{majorminor}.so.*
 %{_libdir}/libgstbadbase-%{majorminor}.so.*
 %{_libdir}/libgstbadvideo-%{majorminor}.so.*
+%{_libdir}/libgstgl-%{majorminor}.so.*
 
 %files devel
 %defattr(-,root,root,-)
@@ -140,6 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgstbasecamerabinsrc-%{majorminor}.so
 %{_libdir}/libgstbadbase-%{majorminor}.so
 %{_libdir}/libgstbadvideo-%{majorminor}.so
+%{_libdir}/libgstgl-%{majorminor}.so
 %{_includedir}/gstreamer-%{majorminor}/gst/interfaces/photography*
 %{_includedir}/gstreamer-%{majorminor}/gst/codecparsers
 %{_includedir}/gstreamer-%{majorminor}/gst/insertbin
@@ -157,7 +167,40 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gstreamer-%{majorminor}/gst/uridownloader/gstfragment.h
 %{_includedir}/gstreamer-%{majorminor}/gst/uridownloader/gsturidownloader.h
 %{_includedir}/gstreamer-%{majorminor}/gst/uridownloader/gsturidownloader_debug.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/egl/gsteglimagememory.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/egl/gstgldisplay_egl.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gl.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/all_functions.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/base.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/blending.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/eglimage.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/fbo.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/fixedfunction.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/gles.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/gstgl_compat.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/gstgl_gles2compat.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/opengl.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/shaders.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgl_fwd.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglapi.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglbufferpool.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglcolorconvert.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglconfig.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglcontext.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgldisplay.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgldownload.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglfeature.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglfilter.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglframebuffer.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglmemory.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglshader.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglshadervariables.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglupload.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgluploadmeta.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglutils.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglwindow.h
 %{_libdir}/pkgconfig/gstreamer-plugins-bad-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-codecparsers-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-insertbin-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-mpegts-%{majorminor}.pc
+%{_libdir}/pkgconfig/gstreamer-gl-%{majorminor}.pc
