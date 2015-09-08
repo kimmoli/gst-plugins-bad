@@ -24,6 +24,7 @@ BuildRequires: pkgconfig(libgcrypt)
 BuildRequires: pkgconfig(wayland-egl)
 BuildRequires: pkgconfig(glesv2)
 BuildRequires: pkgconfig(egl)
+BuildRequires: pkgconfig(opus)
 BuildRequires: python
 BuildRequires: autoconf
 BuildRequires: automake
@@ -129,6 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstfragmented.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegtsdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstopengl.so
+%{_libdir}/gstreamer-%{majorminor}/libgstopus.so
 %{_libdir}/libgstphotography-%{majorminor}.so.*
 %{_libdir}/libgstcodecparsers-%{majorminor}.so.*
 %{_libdir}/libgstinsertbin-%{majorminor}.so.*
