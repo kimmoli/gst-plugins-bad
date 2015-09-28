@@ -72,7 +72,7 @@ NOCONFIGURE=1 ./autogen.sh
   --disable-nls \
   --enable-orc \
   --enable-gles2 \
-  --disable-adpcmdec --disable-adpcmenc --disable-aiff --disable-asfmux \
+  --disable-adpcmdec --disable-adpcmenc --disable-asfmux \
   --disable-audiovisualizers --disable-bayer \
   --disable-cdxaparse --disable-coloreffects --disable-dataurisrc \
   --disable-dccp --disable-debugutils --disable-dvbsuboverlay \
@@ -131,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegtsdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstopengl.so
 %{_libdir}/gstreamer-%{majorminor}/libgstopus.so
+%{_libdir}/gstreamer-%{majorminor}/libgstaiff.so
 %{_libdir}/libgstphotography-%{majorminor}.so.*
 %{_libdir}/libgstcodecparsers-%{majorminor}.so.*
 %{_libdir}/libgstinsertbin-%{majorminor}.so.*
