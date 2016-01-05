@@ -202,6 +202,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgluploadmeta.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglutils.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglwindow.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/x11/gstgldisplay_x11.h
 %{_libdir}/pkgconfig/gstreamer-plugins-bad-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-codecparsers-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-insertbin-%{majorminor}.pc
