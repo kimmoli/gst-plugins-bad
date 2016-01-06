@@ -1,6 +1,9 @@
 %define majorminor   1.0
 %define gstreamer    gstreamer
 
+# Conditional building of X11 related things
+%bcond_with X11
+
 Summary:     GStreamer streaming media framework "bad" plug-ins
 Name:        %{gstreamer}%{majorminor}-plugins-bad
 Version:     1.4.5
@@ -72,6 +75,11 @@ NOCONFIGURE=1 ./autogen.sh
   --disable-nls \
   --enable-orc \
   --enable-gles2 \
+%if %{with X11}
+  --enable-x11=yes \
+%else
+  --enable-x11=no \
+%endif
   --disable-adpcmdec --disable-adpcmenc --disable-asfmux \
   --disable-audiovisualizers --disable-bayer \
   --disable-cdxaparse --disable-coloreffects --disable-dataurisrc \
@@ -202,7 +210,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgluploadmeta.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglutils.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglwindow.h
+%if %{with X11}
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/x11/gstgldisplay_x11.h
+%endif
 %{_libdir}/pkgconfig/gstreamer-plugins-bad-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-codecparsers-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-insertbin-%{majorminor}.pc
