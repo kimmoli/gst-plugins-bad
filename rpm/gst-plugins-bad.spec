@@ -18,6 +18,7 @@ Patch3:      0003-photography-add-missing-vmethods.patch
 Patch4:      0004-camerabin-install-GST_PHOTOGRAPHY_PROP_EXPOSURE_MODE.patch
 Patch5:      0005-Downgrade-mpeg4videoparse-to-prevent-it-from-being-p.patch
 Patch6:      0001-camerabin-update-zoom-param-spec-if-video-source-cha.patch
+Patch7:      0001-jifmux-try-harder-to-find-EOI-marker.patch
 Requires:      orc >= 0.4.18
 BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires: check
@@ -59,6 +60,7 @@ are not tested well enough, or the code is not of good enough quality.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 NOCONFIGURE=1 ./autogen.sh
