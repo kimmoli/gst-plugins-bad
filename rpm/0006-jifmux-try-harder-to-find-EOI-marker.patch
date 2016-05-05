@@ -1,0 +1,43 @@
+From e9770976f294a6ae34d8bd961087f65f157e0fbd Mon Sep 17 00:00:00 2001
+From: Mohammed Hassan <mohammed.hassan@jolla.com>
+Date: Thu, 5 May 2016 03:39:57 +0300
+Subject: [PATCH] jifmux: try harder to find EOI marker.
+
+If EOI marker is not within the last 5 bytes of the jpeg stream then we will fail to find it.
+Since the SOS marker has no size information the only viable way is to scan the image data
+until we find an EOI marker.
+---
+diff --git a/gst/jpegformat/gstjifmux.c b/gst/jpegformat/gstjifmux.c
+index 28638b7..4c66591 100644
+--- a/gst/jpegformat/gstjifmux.c
++++ b/gst/jpegformat/gstjifmux.c
+@@ -328,6 +328,7 @@ gst_jif_mux_parse_image (GstJifMux * self, GstBuffer * buf)
+ 
+     if (marker == SOS) {
+       gint eoi_pos = -1;
++      gboolean eoi_found = FALSE;
+       gint i;
+ 
+       /* search the last 5 bytes for the EOI marker */
+@@ -335,6 +336,7 @@ gst_jif_mux_parse_image (GstJifMux * self, GstBuffer * buf)
+       for (i = 5; i >= 2; i--) {
+         if (map.data[map.size - i] == 0xFF && map.data[map.size - i + 1] == EOI) {
+           eoi_pos = map.size - i;
++         eoi_found = TRUE;
+           break;
+         }
+       }
+@@ -350,6 +352,10 @@ gst_jif_mux_parse_image (GstJifMux * self, GstBuffer * buf)
+         goto error;
+ 
+       GST_DEBUG_OBJECT (self, "scan data, size = %u", self->priv->scan_size);
++
++      /* If we cannot find EOI marker, we assume the rest of the data is scan data */
++      if (!eoi_found)
++       goto done;
+     }
+ 
+     if (!gst_byte_reader_peek_uint8 (&reader, &marker))
+-- 
+2.1.4
+
