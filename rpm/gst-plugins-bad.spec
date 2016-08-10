@@ -136,7 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstfragmented.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegtsdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstopengl.so
-%{_libdir}/gstreamer-%{majorminor}/libgstopus.so
+%{_libdir}/gstreamer-%{majorminor}/libgstopusparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstaiff.so
 %{_libdir}/libgstphotography-%{majorminor}.so.*
 %{_libdir}/libgstcodecparsers-%{majorminor}.so.*
