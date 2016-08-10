@@ -194,18 +194,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglapi.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglbufferpool.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglcolorconvert.h
-%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglconfig.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglcontext.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgldisplay.h
-%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgldownload.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglfeature.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglfilter.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglframebuffer.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglmemory.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglshader.h
-%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglshadervariables.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglupload.h
-%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgluploadmeta.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglutils.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglwindow.h
 %if %{with X11}
@@ -216,3 +212,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/gstreamer-insertbin-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-mpegts-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-gl-%{majorminor}.pc
+%{_libdir}/gstreamer-%{majorminor}/include/gst/gl/gstglconfig.h
