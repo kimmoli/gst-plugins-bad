@@ -6,7 +6,7 @@
 
 Summary:     GStreamer streaming media framework "bad" plug-ins
 Name:        %{gstreamer}%{majorminor}-plugins-bad
-Version:     1.4.5
+Version:     1.8.3
 Release:     1
 License:     LGPLv2+
 Group:       Applications/Multimedia
@@ -17,7 +17,6 @@ Patch2:      0002-Keep-video-branch-in-NULL-state.patch
 Patch3:      0003-photography-add-missing-vmethods.patch
 Patch4:      0004-camerabin-install-GST_PHOTOGRAPHY_PROP_EXPOSURE_MODE.patch
 Patch5:      0005-Downgrade-mpeg4videoparse-to-prevent-it-from-being-p.patch
-Patch6:      0001-camerabin-update-zoom-param-spec-if-video-source-cha.patch
 Requires:      orc >= 0.4.18
 BuildRequires: pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires: check
@@ -58,7 +57,6 @@ are not tested well enough, or the code is not of good enough quality.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 %build
 NOCONFIGURE=1 ./autogen.sh
@@ -135,11 +133,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstvideoparsersbad.so
 %{_libdir}/gstreamer-%{majorminor}/libgstaudiomixer.so
 %{_libdir}/gstreamer-%{majorminor}/libgstcompositor.so
-%{_libdir}/gstreamer-%{majorminor}/libgstfragmented.so
+%{_libdir}/gstreamer-%{majorminor}/libgsthls.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegtsdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstopengl.so
-%{_libdir}/gstreamer-%{majorminor}/libgstopus.so
+%{_libdir}/gstreamer-%{majorminor}/libgstopusparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstaiff.so
+%{_libdir}/gstreamer-%{majorminor}/libgstnetsim.so
+%{_libdir}/gstreamer-%{majorminor}/libgstrtponvif.so
+%{_libdir}/gstreamer-%{majorminor}/libgstvideoframe_audiolevel.so
 %{_libdir}/libgstphotography-%{majorminor}.so.*
 %{_libdir}/libgstcodecparsers-%{majorminor}.so.*
 %{_libdir}/libgstinsertbin-%{majorminor}.so.*
@@ -149,6 +150,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgstbadbase-%{majorminor}.so.*
 %{_libdir}/libgstbadvideo-%{majorminor}.so.*
 %{_libdir}/libgstgl-%{majorminor}.so.*
+%{_libdir}/libgstadaptivedemux-%{majorminor}.so.*
+%{_libdir}/libgstbadaudio-%{majorminor}.so.*
+%{_libdir}/libgstplayer-%{majorminor}.so.*
 
 %files devel
 %defattr(-,root,root,-)
@@ -161,9 +165,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgstbadbase-%{majorminor}.so
 %{_libdir}/libgstbadvideo-%{majorminor}.so
 %{_libdir}/libgstgl-%{majorminor}.so
-%{_includedir}/gstreamer-%{majorminor}/gst/interfaces/photography*
-%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers
-%{_includedir}/gstreamer-%{majorminor}/gst/insertbin
+%{_libdir}/libgstadaptivedemux-%{majorminor}.so
+%{_libdir}/libgstbadaudio-%{majorminor}.so
+%{_libdir}/libgstplayer-%{majorminor}.so
+%{_includedir}/gstreamer-%{majorminor}/gst/interfaces/photography-enumtypes.h
+%{_includedir}/gstreamer-%{majorminor}/gst/interfaces/photography.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gsth264parser.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gsth265parser.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gstjpegparser.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gstmpeg4parser.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gstmpegvideometa.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gstmpegvideoparser.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gstvc1parser.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gstvp8parser.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gstvp8rangedecoder.h
+%{_includedir}/gstreamer-%{majorminor}/gst/codecparsers/gstvp9parser.h
+%{_includedir}/gstreamer-%{majorminor}/gst/insertbin/gstinsertbin.h
 %{_includedir}/gstreamer-%{majorminor}/gst/basecamerabinsrc/gstbasecamerasrc.h
 %{_includedir}/gstreamer-%{majorminor}/gst/basecamerabinsrc/gstcamerabin-enum.h
 %{_includedir}/gstreamer-%{majorminor}/gst/basecamerabinsrc/gstcamerabinpreview.h
@@ -196,25 +213,61 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglapi.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglbufferpool.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglcolorconvert.h
-%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglconfig.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglcontext.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgldisplay.h
-%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgldownload.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglfeature.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglfilter.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglframebuffer.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglmemory.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglshader.h
-%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglshadervariables.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglupload.h
-%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgluploadmeta.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglutils.h
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglwindow.h
 %if %{with X11}
 %{_includedir}/gstreamer-%{majorminor}/gst/gl/x11/gstgldisplay_x11.h
 %endif
+%{_includedir}/gstreamer-%{majorminor}/gst/audio/gstaudioaggregator.h
+%{_includedir}/gstreamer-%{majorminor}/gst/base/gstaggregator.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/egl/gstegl.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/egl/gstglcontext_egl.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/buffers.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/debug.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/query.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/sync.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/glprototypes/vao.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgl_enums.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglbasefilter.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglbasememory.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglbuffer.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglcontrolbindingproxy.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgldebug.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglformat.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglmemorypbo.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstgloverlaycompositor.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglquery.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglshaderstrings.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglsl.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglslstage.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglsyncmeta.h
+%{_includedir}/gstreamer-%{majorminor}/gst/gl/gstglviewconvert.h
+%{_includedir}/gstreamer-%{majorminor}/gst/player/gstplayer-g-main-context-signal-dispatcher.h
+%{_includedir}/gstreamer-%{majorminor}/gst/player/gstplayer-media-info.h
+%{_includedir}/gstreamer-%{majorminor}/gst/player/gstplayer-signal-dispatcher.h
+%{_includedir}/gstreamer-%{majorminor}/gst/player/gstplayer-types.h
+%{_includedir}/gstreamer-%{majorminor}/gst/player/gstplayer-video-overlay-video-renderer.h
+%{_includedir}/gstreamer-%{majorminor}/gst/player/gstplayer-video-renderer.h
+%{_includedir}/gstreamer-%{majorminor}/gst/player/gstplayer-visualization.h
+%{_includedir}/gstreamer-%{majorminor}/gst/player/gstplayer.h
+%{_includedir}/gstreamer-%{majorminor}/gst/player/player.h
+%{_includedir}/gstreamer-%{majorminor}/gst/video/gstvideoaggregator.h
+%{_includedir}/gstreamer-%{majorminor}/gst/video/gstvideoaggregatorpad.h
 %{_libdir}/pkgconfig/gstreamer-plugins-bad-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-codecparsers-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-insertbin-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-mpegts-%{majorminor}.pc
 %{_libdir}/pkgconfig/gstreamer-gl-%{majorminor}.pc
+%{_libdir}/pkgconfig/gstreamer-bad-audio-%{majorminor}.pc
+%{_libdir}/pkgconfig/gstreamer-bad-base-%{majorminor}.pc
+%{_libdir}/pkgconfig/gstreamer-bad-video-%{majorminor}.pc
+%{_libdir}/pkgconfig/gstreamer-player-%{majorminor}.pc
+%{_libdir}/gstreamer-%{majorminor}/include/gst/gl/gstglconfig.h
